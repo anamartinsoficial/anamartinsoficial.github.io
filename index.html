@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ana Martins, Diretora de Criação</title>
+<meta name="description" content="Diretora de criação. 15 anos de comunicação entre setor público, agência e terceiro setor. Marca, campanha e sistema, do conceito ao arquivo fechado.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --paper: #F0EEE9;        /* Pantone 11-4201 Cloud Dancer (aprox.) */
+    --ink: #1C1B19;          /* quase-preto quente */
+    --mute: #5E5A53;
+    --rule: #D6D1C8;
+    --link: #1E5A56;         /* teal profundo para texto */
+
+    --field: #22605C;        /* WGSN Transformative Teal (aprox.) */
+    --field-ink: #F0EEE9;
+    --field-mute: #C8D9D5;
+
+    --band: #1C1B19;
+    --band-ink: #F0EEE9;
+    --band-num: #8FC3BC;
+    --band-rule: #3A3935;
+
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    /* escala de espaço, base 8 */
+    --s1: 8px;
+    --s2: 16px;
+    --s3: 24px;
+    --s4: 32px;
+    --s5: 48px;
+    --s6: 64px;
+    --s7: 96px;
+    --s8: 128px;
+
+    --gap: var(--s3);
+    --gutter: clamp(16px, 6vw, 104px);
+    --measure: 66ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141412;
+      --ink: #ECE9E2;
+      --mute: #A39F97;
+      --rule: #33312D;
+      --link: #8FC3BC;
+
+      --field: #1E4F4C;
+      --field-ink: #F0EEE9;
+      --field-mute: #A9C6C1;
+
+      --band: #22605C;
+      --band-ink: #F0EEE9;
+      --band-num: #F0EEE9;
+      --band-rule: #3F7A75;
+    }
+  }
+
+  /* ---------- Base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--field); color: var(--field-ink); }
+  h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; padding: 0; }
+  ol, ul { list-style: none; }
+
+  a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+  a:hover { color: var(--ink); }
+  a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+  .wrap {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+  }
+
+  .mono {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  .display {
+    font-family: var(--sans);
+    font-stretch: 62%;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- Topo em campo de cor ---------- */
+  .hero { background: var(--field); color: var(--field-ink); }
+  .hero a { color: var(--field-ink); }
+  .hero-in { padding-top: var(--s4); padding-bottom: var(--s6); }
+
+  .topline {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--s1) var(--s3);
+    color: var(--field-mute);
+    padding-bottom: var(--s2);
+    border-bottom: 1px solid currentColor;
+  }
+
+  h1 {
+    font-size: clamp(4rem, 12.5vw, 11rem);
+    line-height: 0.86;
+    margin-top: var(--s7);
+    margin-bottom: var(--s6);
+  }
+  h1 span { display: inline-block; }
+
+  .lede {
+    grid-column: 1 / span 7;
+    font-size: clamp(1.375rem, 2.1vw, 1.75rem);
+    line-height: 1.32;
+    letter-spacing: -0.005em;
+    font-weight: 450;
+    max-width: 36ch;
+  }
+
+  .meta {
+    grid-column: 9 / span 4;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .meta dt { color: var(--field-mute); }
+  .meta dd + dt { margin-top: var(--s2); }
+  .meta dd { margin-top: 2px; }
+
+  .contact {
+    grid-column: 1 / -1;
+    margin-top: var(--s6);
+    padding-top: var(--s2);
+    border-top: 1px solid currentColor;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s1) var(--s4);
+  }
+  .contact a { text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+  /* ---------- Seções ---------- */
+  section { padding-block: var(--s7) 0; }
+  .head { grid-column: 1 / -1; display: flex; align-items: baseline; gap: var(--s2); margin-bottom: var(--s5); padding-bottom: var(--s2); border-bottom: 1px solid var(--ink); }
+  .head .num { color: var(--mute); }
+  h2 {
+    font-size: clamp(2rem, 4.2vw, 3.5rem);
+    line-height: 0.95;
+  }
+  .body { grid-column: 4 / span 7; }
+  .side { grid-column: 1 / span 3; color: var(--mute); padding-top: 0.3em; }
+
+  .prose p { max-width: var(--measure); }
+  .prose p + p { margin-top: var(--s2); }
+
+  /* Trajetória */
+  .jobs > li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--s3);
+    padding-block: var(--s3);
+    border-top: 1px solid var(--rule);
+  }
+  .jobs > li:first-child { border-top: 0; padding-top: 0; }
+  .jobs h3 { font-size: 1.375rem; font-weight: 650; line-height: 1.25; letter-spacing: -0.005em; }
+  .jobs .org { display: block; font-weight: 400; color: var(--mute); font-size: 18px; }
+  .jobs .when { color: var(--mute); white-space: nowrap; padding-top: 0.35em; text-align: right; }
+  .jobs p { grid-column: 1 / -1; margin-top: var(--s1); max-width: var(--measure); }
+
+  /* Resultados: faixa que quebra o grid */
+  .results {
+    background: var(--band);
+    color: var(--band-ink);
+    margin-top: var(--s7);
+    padding-block: var(--s6) var(--s5);
+  }
+  .results .head { border-bottom-color: var(--band-rule); }
+  .results .head .num { color: var(--band-num); }
+  .stats {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: var(--gap);
+    row-gap: var(--s5);
+  }
+  .stats > div { display: flex; flex-direction: column; border-left: 1px solid var(--band-rule); padding-left: var(--s2); }
+  .stats dd {
+    order: -1;
+    font-stretch: 62%;
+    font-weight: 800;
+    font-size: clamp(3.25rem, 5.6vw, 5.25rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--band-num);
+    white-space: nowrap;
+  }
+  .stats dd small { font-size: 0.4em; font-weight: 700; letter-spacing: 0.02em; margin-left: 0.12em; text-transform: uppercase; }
+  .stats dt { font-size: 15px; line-height: 1.45; margin-top: var(--s1); max-width: 24ch; }
+  .results .note { grid-column: 1 / -1; margin-top: var(--s5); font-size: 14px; opacity: 0.85; }
+
+  /* Seleção de trabalhos */
+  .works > li { border-top: 1px solid var(--rule); }
+  .works > li:first-child { border-top: 0; }
+  .works a {
+    display: grid;
+    grid-template-columns: 4ch minmax(0, 1fr) auto;
+    column-gap: var(--s2);
+    padding-block: var(--s3);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .works li:first-child a { padding-top: 0; }
+  .works .n { color: var(--mute); padding-top: 0.3em; }
+  .works .tag { color: var(--mute); display: block; margin-bottom: 4px; }
+  .works h3 { font-size: 1.375rem; font-weight: 650; line-height: 1.25; letter-spacing: -0.005em; }
+  .works p { color: var(--mute); margin-top: 2px; }
+  .works .go { color: var(--link); padding-top: 0.3em; white-space: nowrap; }
+  .works h3, .works .go { transition: color 150ms ease; }
+  .works a:hover h3 { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  .more { margin-top: var(--s4); }
+
+  /* Ferramentas */
+  .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4) var(--gap); }
+  .tools h3 { color: var(--mute); margin-bottom: var(--s1); }
+  .tools li { font-size: 16px; line-height: 1.5; }
+  .tools li + li { margin-top: 6px; }
+
+  /* Formação */
+  .edu > li { padding-block: var(--s2); border-top: 1px solid var(--rule); max-width: var(--measure); }
+  .edu > li:first-child { border-top: 0; padding-top: 0; }
+  .edu strong { font-weight: 600; }
+  .edu span { color: var(--mute); }
+  .aside { margin-top: var(--s3); color: var(--mute); max-width: var(--measure); }
+
+  .award { font-size: clamp(2rem, 4.2vw, 3.5rem); line-height: 0.95; }
+
+  /* ---------- Rodapé ---------- */
+  footer { margin-top: var(--s7); background: var(--field); color: var(--field-ink); }
+  footer a { color: var(--field-ink); }
+  .foot { padding-block: var(--s5); align-items: end; row-gap: var(--s2); }
+  .foot .sign { grid-column: 1 / span 6; font-size: clamp(2rem, 4.2vw, 3.5rem); line-height: 0.95; }
+  .foot .c { grid-column: 7 / span 6; text-align: right; font-size: 15px; }
+  .foot .c a { text-transform: none; letter-spacing: 0; }
+
+  /* ---------- Responsivo (tela) ---------- */
+  @media screen and (max-width: 1100px) {
+    .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .body { grid-column: 4 / -1; }
+    .lede { grid-column: 1 / span 8; }
+    .meta { grid-column: 9 / -1; }
+  }
+
+  @media screen and (max-width: 800px) {
+    :root { --gap: var(--s2); }
+    h1 { margin-top: var(--s6); margin-bottom: var(--s5); }
+    .lede, .meta, .body, .side { grid-column: 1 / -1; }
+    .meta { margin-top: var(--s4); }
+    .side { margin-bottom: var(--s3); padding-top: 0; }
+    .contact { margin-top: var(--s5); flex-direction: column; }
+    section { padding-top: var(--s6); }
+    .results { margin-top: var(--s6); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s4); }
+    .tools { grid-template-columns: 1fr; }
+    .foot .sign, .foot .c { grid-column: 1 / -1; text-align: left; }
+  }
+
+  @media screen and (max-width: 480px) {
+    body { font-size: 17px; }
+    .jobs > li { grid-template-columns: 1fr; }
+    .jobs .when { order: -1; text-align: left; padding: 0 0 4px; }
+    .works a { grid-template-columns: 4ch minmax(0, 1fr); }
+    .works .go { grid-column: 2; padding-top: var(--s1); }
+    .stats dd { font-size: 3.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+
+  /* ---------- Impressão: A4, duas páginas ---------- */
+  @page { size: A4; margin: 13mm 15mm 12mm; }
+
+  @media print {
+    :root {
+      --paper: #fff; --ink: #000; --mute: #444; --rule: #bbb; --link: #000;
+      --field: #fff; --field-ink: #000; --field-mute: #444;
+      --band: #fff; --band-ink: #000; --band-num: #000; --band-rule: #bbb;
+      --gap: 5mm; --gutter: 0;
+    }
+    html, body { background: #fff !important; color: #000; }
+    body { font-size: 8.8pt; line-height: 1.42; }
+    .wrap { max-width: none; padding: 0; }
+    a { text-decoration: none; }
+    .mono { font-size: 6.8pt; }
+
+    .hero-in { padding: 0 0 2mm; }
+    .topline { padding-bottom: 1.5mm; }
+    h1 { font-size: 36pt; margin: 3mm 0 3mm; }
+    .lede { font-size: 12.5pt; max-width: 42ch; }
+    .meta { font-size: 8.4pt; }
+    .meta dd + dt { margin-top: 1.5mm; }
+    .contact { margin-top: 3mm; padding-top: 1.5mm; gap: 1mm 6mm; }
+
+    section { padding-top: 4mm; break-inside: auto; }
+    .head { margin-bottom: 1.8mm; padding-bottom: 0.6mm; break-after: avoid; }
+    h2 { font-size: 13pt; line-height: 1.25; padding-top: 0.6mm; }
+    .head { break-inside: avoid; break-after: avoid; }
+    .tools, .edu, .stats { break-inside: avoid; }
+    section[aria-labelledby="h-trabalhos"] { break-before: page; }
+    .prose { grid-column: 4 / -1; }
+    .prose p { max-width: none; }
+    .prose p + p { margin-top: 1.2mm; }
+    .award { font-size: 11pt; }
+    .side { padding-top: 0; }
+
+    .jobs > li { padding-block: 1.3mm; break-inside: avoid; }
+    .jobs h3, .works h3 { font-size: 10.5pt; }
+    .jobs .org { font-size: 8.8pt; }
+    .jobs p { margin-top: 0.6mm; }
+
+    .results { margin-top: 0; padding: 4mm 0 0; break-inside: avoid; }
+    .results .head { border-bottom-color: #000; }
+    .stats { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .stats > div { padding-left: 2.5mm; }
+    .stats dd { font-size: 24pt; }
+    .stats dt { font-size: 7.6pt; margin-top: 1mm; }
+    .results .note { margin-top: 2.5mm; font-size: 7.6pt; opacity: 1; }
+
+    .works a { padding-block: 1mm; grid-template-columns: 4ch minmax(0, 1fr); }
+    .works li { break-inside: avoid; }
+    .works .tag { margin-bottom: 0; }
+    .works p { margin-top: 0; }
+    .works .go { display: none; }
+    .works a::after { content: attr(data-print); grid-column: 2; font-size: 7.6pt; color: var(--mute); }
+    .more { margin-top: 2mm; margin-bottom: 2.5mm; }
+
+    .tools { gap: 2mm 5mm; }
+    .tools h3 { margin-bottom: 1mm; }
+    .tools li { font-size: 8.5pt; }
+    .tools li + li { margin-top: 0.5mm; }
+
+    .edu > li { padding-block: 1.1mm; }
+    .aside { margin-top: 1.5mm; }
+
+    footer { display: none; }
+    .foot { padding: 2.5mm 0 0; }
+    .foot .sign { font-size: 15pt; }
+    .foot .c { font-size: 8pt; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-in">
+    <div class="topline mono">
+      <span>Ana Martins · Currículo</span>
+      <span>Diretora de criação</span>
+      <span>Rio de Janeiro, RJ</span>
+    </div>
+
+    <h1 class="display"><span>Ana</span> <span>Martins</span></h1>
+
+    <div class="grid">
+      <p class="lede">Diretora de criação. 15 anos de comunicação entre setor público, agência e terceiro setor. Marca, campanha e sistema, do conceito ao arquivo fechado.</p>
+
+      <dl class="meta">
+        <dt class="mono">Posição atual</dt>
+        <dd>Diretora Criativa e Fundadora, POV MKT</dd>
+      </dl>
+
+      <ul class="contact mono" aria-label="Contato">
+        <li><a href="mailto:ammartins.ana@gmail.com">ammartins.ana@gmail.com</a></li>
+        <li><a href="tel:+5521990934804">(21) 99093-4804</a></li>
+        <li><a href="https://linkedin.com/in/ana-martinsoficial" target="_blank" rel="noopener">linkedin.com/in/ana-martinsoficial</a></li>
+        <li><a href="https://behance.net/anamartinsoficial" target="_blank" rel="noopener">behance.net/anamartinsoficial</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" aria-labelledby="h-resumo">
+    <div class="grid">
+      <div class="head"><span class="num mono">01</span><h2 class="display" id="h-resumo">Resumo</h2></div>
+      <div class="body prose">
+        <p>Sou diretora de criação, com 15 anos de experiência em comunicação construídos entre setor público, agência e terceiro setor. Comecei na Prefeitura de Porto Alegre e no Governo do Estado do Rio de Janeiro, passei pela E3 Comunicação Integrada como diretora de arte e, no RenovaBR, entrei como diretora de arte e saí como diretora de comunicação, depois de quatro anos e meio.</p>
+        <p>Na prática, minha função sempre foi a mesma: pegar um objetivo que ainda não virou ideia, um problema que ainda não tem solução, e conduzir até a entrega. Gosto de sistema, de criar a regra que faz a marca se sustentar quando muita gente passa a aplicá-la. Uso IA como etapa de produção, com direção autoral em cima.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-trajetoria">
+    <div class="grid">
+      <div class="head"><span class="num mono">02</span><h2 class="display" id="h-trajetoria">Trajetória</h2></div>
+      <p class="side mono">2017 — hoje</p>
+      <ol class="body jobs">
+        <li>
+          <h3>Diretora Criativa e Fundadora <span class="org">POV MKT</span></h3>
+          <span class="when mono">jul/2026 — hoje</span>
+          <p>Estúdio próprio. Branding, campanha eleitoral e impacto social. Clientes como Ismart e Instituto Sou da Paz, além de campanhas majoritárias e proporcionais em 2026. Direção de identidade, sistema de aplicação e produção gráfica de grande formato.</p>
+        </li>
+        <li>
+          <h3>Diretora de Comunicação <span class="org">RenovaBR</span></h3>
+          <span class="when mono">fev/2024 — jun/2026</span>
+          <p>Liderança de um time de seis pessoas entre arte, motion, edição, social e marketing digital, mais audiovisual e assessoria de imprensa terceirizados. Direção de quatro campanhas de processo seletivo, campanhas de arrecadação e campanhas audiovisuais social-first.</p>
+        </li>
+        <li>
+          <h3>Diretora de Arte <span class="org">RenovaBR</span></h3>
+          <span class="when mono">nov/2021 — fev/2024</span>
+          <p>Identidade visual, KV e desdobramento de campanha em todas as mídias.</p>
+        </li>
+        <li>
+          <h3>Diretora de Arte <span class="org">E3 Comunicação Integrada</span></h3>
+          <span class="when mono">abr/2020 — nov/2021</span>
+          <p>Criação e direção de arte em contexto de comunicação integrada, incluindo peças animadas para redes sociais.</p>
+        </li>
+        <li>
+          <h3>Designer e Direção de Arte <span class="org">Governo do Estado do Rio de Janeiro</span></h3>
+          <span class="when mono">jun/2019 — mar/2020</span>
+        </li>
+        <li>
+          <h3>Designer e Direção de Arte <span class="org">Prefeitura de Porto Alegre</span></h3>
+          <span class="when mono">jan/2017 — mai/2019</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="results" aria-labelledby="h-resultados">
+    <div class="wrap grid">
+      <div class="head"><span class="num mono">03</span><h2 class="display" id="h-resultados">Resultados, RenovaBR</h2></div>
+      <dl class="stats">
+        <div><dt>de alcance no Instagram</dt><dd>13<small>milhões</small></dd></div>
+        <div><dt>novos seguidores</dt><dd>36<small>mil</small></dd></div>
+        <div><dt>leads de newsletter, com 40% de taxa de abertura</dt><dd>45<small>mil</small></dd></div>
+        <div><dt>publicações de imprensa em 2025, com 100% de sentimento positivo</dt><dd>71</dd></div>
+        <div><dt>pessoas no time sob direção</dt><dd>6</dd></div>
+      </dl>
+      <p class="note">Resultados de criação dirigida, somada a impulsionamento e tráfego pago.</p>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-trabalhos">
+    <div class="grid">
+      <div class="head"><span class="num mono">04</span><h2 class="display" id="h-trabalhos">Seleção de trabalhos</h2></div>
+      <p class="side mono">6 projetos no Behance</p>
+      <div class="body">
+        <ol class="works">
+          <li><a href="https://www.behance.net/gallery/257335357/Soldado-Sampaio-10-Governo-de-Roraima-2026" target="_blank" rel="noopener" data-print="behance.net/gallery/257335357">
+            <span class="n mono">01</span>
+            <div><span class="tag mono">Campanha · 2026</span><h3>Soldado Sampaio 10, governo de Roraima</h3><p>Direção de arte geral: marca, rua, comitê, redes e TV.</p></div>
+            <span class="go mono">Ver ↗</span>
+          </a></li>
+          <li><a href="https://www.behance.net/gallery/251926313/Santo-Andr-Rebranding" target="_blank" rel="noopener" data-print="behance.net/gallery/251926313">
+            <span class="n mono">02</span>
+            <div><span class="tag mono">Rebranding</span><h3>Santo André</h3><p>Sistema de marca completo para cliente público de porte.</p></div>
+            <span class="go mono">Ver ↗</span>
+          </a></li>
+          <li><a href="https://www.behance.net/gallery/251335159/Branding-e-social-media-Marivaldo" target="_blank" rel="noopener" data-print="behance.net/gallery/251335159">
+            <span class="n mono">03</span>
+            <div><span class="tag mono">Branding e social</span><h3>Marivaldo</h3><p>Marca criada do zero e desdobrada em volume de peças de campanha.</p></div>
+            <span class="go mono">Ver ↗</span>
+          </a></li>
+          <li><a href="https://www.behance.net/gallery/247924987/RenovaBR-Annual-Reports-20212024" target="_blank" rel="noopener" data-print="behance.net/gallery/247924987">
+            <span class="n mono">04</span>
+            <div><span class="tag mono">Relatórios anuais · 2021 a 2024</span><h3>RenovaBR</h3><p>Quatro anos de consistência editorial dentro do mesmo sistema.</p></div>
+            <span class="go mono">Ver ↗</span>
+          </a></li>
+          <li><a href="https://www.behance.net/gallery/250065479/Vozes-Femininas-do-Brasil-Marca" target="_blank" rel="noopener" data-print="behance.net/gallery/250065479">
+            <span class="n mono">05</span>
+            <div><span class="tag mono">Marca</span><h3>Vozes Femininas do Brasil</h3><p>Identidade para projeto de impacto social.</p></div>
+            <span class="go mono">Ver ↗</span>
+          </a></li>
+          <li><a href="https://www.behance.net/gallery/247941781/Ismart-Activity-Report-2024-Editorial-Design" target="_blank" rel="noopener" data-print="behance.net/gallery/247941781">
+            <span class="n mono">06</span>
+            <div><span class="tag mono">Relatório de atividades · 2024</span><h3>Ismart</h3><p>Design editorial institucional.</p></div>
+            <span class="go mono">Ver ↗</span>
+          </a></li>
+        </ol>
+        <p class="more">Portfólio completo: <a href="https://behance.net/anamartinsoficial" target="_blank" rel="noopener">behance.net/anamartinsoficial</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-ferramentas">
+    <div class="grid">
+      <div class="head"><span class="num mono">05</span><h2 class="display" id="h-ferramentas">Ferramentas e práticas</h2></div>
+      <div class="body tools">
+        <div>
+          <h3 class="mono">Criação</h3>
+          <ul>
+            <li>Illustrator</li>
+            <li>Photoshop</li>
+            <li>InDesign</li>
+            <li>Figma</li>
+            <li>After Effects</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mono">IA aplicada</h3>
+          <ul>
+            <li>Geração e refino de imagem em série, com referência, variação e upscale</li>
+            <li>Animação com execução assistida e direção autoral</li>
+            <li>Fluxos de produção automatizada</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mono">Produção</h3>
+          <ul>
+            <li>Produção gráfica e grande formato</li>
+            <li>Finalização digital</li>
+            <li>Separação RGB e CMYK</li>
+            <li>Colaboração com audiovisual</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-formacao">
+    <div class="grid">
+      <div class="head"><span class="num mono">06</span><h2 class="display" id="h-formacao">Formação</h2></div>
+      <div class="body">
+        <ul class="edu">
+          <li><strong>Mestrado profissional em Comunicação Digital e Cultura de Dados</strong> <span>FGV Rio, em andamento</span></li>
+          <li><strong>Certificação em IA Generativa</strong> <span>MIT</span></li>
+          <li><strong>Pós-graduação em Criação de Conteúdo Audiovisual</strong> <span>FAAP</span></li>
+          <li><strong>Comunicação Social, Publicidade e Propaganda</strong> <span>Unisinos, 2015</span></li>
+        </ul>
+        <p class="aside">Integrante do Observatório de Pesquisa sobre Mulheres da FGV.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap grid foot">
+    <p class="sign display">Ana Martins</p>
+    <p class="c mono"><a href="mailto:ammartins.ana@gmail.com">ammartins.ana@gmail.com</a> · <a href="tel:+5521990934804">(21) 99093-4804</a><br>Rio de Janeiro, 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
